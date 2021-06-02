@@ -15,9 +15,9 @@ const Agendamentos = () => {
   const { agendamentos } = useSelector((state) => state.agendamento);
 
   const formatEventos = agendamentos.map((agendamento) => ({
-    title: `${agendamento.servicoId.titulo} - 
-            ${agendamento.clienteId.nome} - 
-            ${agendamento.colaboradorId.nome}`,
+    title: `Serviço:  ${agendamento.servicoId.titulo} | 
+            Cliente:  ${agendamento.clienteId.nome} | 
+            Barbeiro: ${agendamento.colaboradorId.nome}`,
     start: moment(agendamento.data).toDate(),
     end: moment(agendamento.data)
       .add(
@@ -73,7 +73,6 @@ const Agendamentos = () => {
             endAccessor="end"
             style={{ height: 600 }}
           />
-          <div className="nossa" />
         </div>
       </div>
     </div>
