@@ -64,20 +64,23 @@ const Clientes = () => {
                 <input
                   type="email"
                   class="form-control"
+                  disabled={behavior === 'update'}
                   placeholder="name@example.com"
                   value={cliente.email}
                   onChange={(e) => setCliente('email', e.target.value)}
                 />
-                <div className="input-group-append m-1">
-                  <Button
-                    appearance="primary"
-                    loading={form.filtering}
-                    disabled={form.filtering}
-                    onClick={() => dispatch(filterClientes())}
-                  >
-                    Pesquisar
-                  </Button>
-                </div>
+                {behavior === 'create' && (
+                  <div className="input-group-append m-1">
+                    <Button
+                      appearance="primary"
+                      loading={form.filtering}
+                      disabled={form.filtering}
+                      onClick={() => dispatch(filterClientes())}
+                    >
+                      Pesquisar
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -323,7 +326,7 @@ const Clientes = () => {
               {
                 label: 'Data de Cadastro',
                 content: (cliente) =>
-                  moment(cliente.dataCadastro).format('DD/MM/YYYY'),
+                  moment(cliente.dataCadastro).format('DD/MM/YYYY HH:mm'),
                 width: 200,
               },
             ]}
