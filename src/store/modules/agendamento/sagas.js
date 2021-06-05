@@ -4,6 +4,7 @@ import types from './types';
 import { updateAgendamento } from './actions';
 
 import api from '../../../services/api';
+import { notification } from '../../../services/rsuite';
 import consts from '../../../consts';
 
 export function* filterAgendamento({ start, end }) {
@@ -17,13 +18,21 @@ export function* filterAgendamento({ start, end }) {
     });
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
     yield put(updateAgendamento(res.agendamentos));
   } catch (err) {
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 

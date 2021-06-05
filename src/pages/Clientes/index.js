@@ -9,6 +9,7 @@ import {
   filterClientes,
   addCliente,
   unlinkCliente,
+  resetCliente,
 } from '../../store/modules/cliente/actions';
 
 import { Button, Drawer, Modal, Icon } from 'rsuite';
@@ -298,6 +299,7 @@ const Clientes = () => {
               <button
                 className="btn btn-primary btn-lg"
                 onClick={() => {
+                  dispatch(resetCliente());
                   dispatch(
                     updateCliente({
                       behavior: 'create',

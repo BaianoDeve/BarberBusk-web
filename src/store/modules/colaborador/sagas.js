@@ -8,6 +8,7 @@ import {
 import types from './types';
 
 import api from '../../../services/api';
+import { notification } from '../../../services/rsuite';
 import consts from '../../../consts';
 
 export function* allColaboradores() {
@@ -24,14 +25,22 @@ export function* allColaboradores() {
     yield put(updateColaborador({ form: { ...form, filtering: false } }));
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
     yield put(updateColaborador({ colaboradores: res.colaboradores }));
   } catch (err) {
     yield put(updateColaborador({ form: { ...form, filtering: false } }));
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 
@@ -51,7 +60,11 @@ export function* filterColaboradores() {
     yield put(updateColaborador({ form: { ...form, filtering: false } }));
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
@@ -67,7 +80,11 @@ export function* filterColaboradores() {
     }
   } catch (err) {
     yield put(updateColaborador({ form: { ...form, filtering: false } }));
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 
@@ -98,7 +115,11 @@ export function* addColaborador() {
     yield put(updateColaborador({ form: { ...form, saving: false } }));
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
@@ -109,7 +130,11 @@ export function* addColaborador() {
     yield put(resetColaborador());
   } catch (err) {
     yield put(updateColaborador({ form: { ...form, saving: false } }));
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 
@@ -137,7 +162,11 @@ export function* unlinkColaborador() {
     );
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
@@ -150,7 +179,11 @@ export function* unlinkColaborador() {
     yield put(resetColaborador());
   } catch (err) {
     yield put(updateColaborador({ form: { ...form, saving: false } }));
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 
@@ -168,14 +201,22 @@ export function* allServicos() {
     yield put(updateColaborador({ form: { ...form, filtering: false } }));
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
     yield put(updateColaborador({ servicos: res.servicos }));
   } catch (err) {
     yield put(updateColaborador({ form: { ...form, filtering: false } }));
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 

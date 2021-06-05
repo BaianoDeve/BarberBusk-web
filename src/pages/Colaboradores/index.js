@@ -10,9 +10,10 @@ import {
   addColaborador,
   unlinkColaborador,
   allServicos,
+  resetColaborador,
 } from '../../store/modules/colaborador/actions';
 
-import { Button, Drawer, Modal, Icon, Checkbox, TagPicker } from 'rsuite';
+import { Button, Drawer, Modal, Icon, TagPicker, Tag } from 'rsuite';
 import Table from '../../components/Table';
 
 const Colaborador = () => {
@@ -193,15 +194,20 @@ const Colaborador = () => {
         onHide={() => setComponent('confirmDelete', false)}
         size="xs"
       >
+        <Modal.Header>
+          <Modal.Title>
+            <Icon
+              icon="remind"
+              style={{
+                color: '#ffb300',
+                fontSize: 24,
+              }}
+            />
+            {'  '}Excluir Colaborador
+          </Modal.Title>
+        </Modal.Header>
         <Modal.Body>
-          <Icon
-            icon="remind"
-            style={{
-              color: '#ffb300',
-              fontSize: 24,
-            }}
-          />
-          {'  '} Tem certeza que deseja excluir? Essa ação será irreversível!
+          <b>Tem certeza que deseja excluir? Essa ação será irreversível!</b>
         </Modal.Body>
         <Modal.Footer>
           <Button loading={form.saving} onClick={() => remove()} color="red">
@@ -223,6 +229,7 @@ const Colaborador = () => {
               <button
                 className="btn btn-primary btn-lg"
                 onClick={() => {
+                  dispatch(resetColaborador());
                   dispatch(
                     updateColaborador({
                       behavior: 'create',
@@ -250,8 +257,11 @@ const Colaborador = () => {
               },
               {
                 label: 'Status',
-                content: (colaborador) =>
-                  colaborador.vinculo === 'A' ? 'Ativo' : 'Inativo',
+                content: (servico) => (
+                  <Tag color={servico.status === 'A' ? 'green' : 'red'}>
+                    {servico.status === 'A' ? 'Ativo' : 'Inativo'}
+                  </Tag>
+                ),
                 width: 200,
               },
               {

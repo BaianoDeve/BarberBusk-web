@@ -8,6 +8,7 @@ import {
 import types from './types';
 
 import api from '../../../services/api';
+import { notification } from '../../../services/rsuite';
 import consts from '../../../consts';
 
 export function* allClientes() {
@@ -24,14 +25,22 @@ export function* allClientes() {
     yield put(updateCliente({ form: { ...form, filtering: false } }));
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
     yield put(updateCliente({ clientes: res.clientes }));
   } catch (err) {
     yield put(updateCliente({ form: { ...form, filtering: false } }));
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 
@@ -51,7 +60,11 @@ export function* filterClientes() {
     yield put(updateCliente({ form: { ...form, filtering: false } }));
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
@@ -67,7 +80,11 @@ export function* filterClientes() {
     }
   } catch (err) {
     yield put(updateCliente({ form: { ...form, filtering: false } }));
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 
@@ -85,7 +102,11 @@ export function* addCliente() {
     yield put(updateCliente({ form: { ...form, saving: false } }));
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
@@ -94,7 +115,11 @@ export function* addCliente() {
     yield put(resetCliente());
   } catch (err) {
     yield put(updateCliente({ form: { ...form, saving: false } }));
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 
@@ -120,7 +145,11 @@ export function* unlinkCliente() {
     );
 
     if (res.error) {
-      alert(res.message);
+      notification('error', {
+        placement: 'topStart',
+        title: 'Ops...',
+        description: res.message,
+      });
       return false;
     }
 
@@ -133,7 +162,11 @@ export function* unlinkCliente() {
     yield put(resetCliente());
   } catch (err) {
     yield put(updateCliente({ form: { ...form, saving: false } }));
-    alert(err.message);
+    notification('error', {
+      placement: 'topStart',
+      title: 'Ops...',
+      description: err.message,
+    });
   }
 }
 
