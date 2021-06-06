@@ -224,7 +224,7 @@ const Colaborador = () => {
       <div className="row">
         <div className="col-12">
           <div className="w-10 d-flex justify-content-between">
-            <h2 className="mb-4 mt-0">colaboradors</h2>
+            <h2 className="mb-4 mt-0">Barbeiros Cadastrados</h2>
             <div>
               <button
                 className="btn btn-primary btn-lg"

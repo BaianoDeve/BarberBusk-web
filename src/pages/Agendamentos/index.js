@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
+import 'moment/locale/pt-br';
 import util from '../../util';
 
 import { filterAgendamentos } from '../../store/modules/agendamento/actions';
 
+moment.locale('pt-br');
 const localizer = momentLocalizer(moment);
 
 const Agendamentos = () => {
@@ -73,6 +75,9 @@ const Agendamentos = () => {
             endAccessor="end"
             style={{ height: 600 }}
           />
+          <div className="w-10 mb-4">
+            <span className="m-4"></span>
+          </div>
         </div>
       </div>
     </div>
