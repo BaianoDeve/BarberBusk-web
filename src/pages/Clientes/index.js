@@ -1,5 +1,6 @@
 import 'rsuite/dist/styles/rsuite-default.css';
 import moment from 'moment';
+import util from '../../util';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +13,7 @@ import {
   resetCliente,
 } from '../../store/modules/cliente/actions';
 
-import { Button, Drawer, Modal, Icon } from 'rsuite';
+import { Button, Drawer, Modal, Icon, Notification } from 'rsuite';
 import Table from '../../components/Table';
 
 const Clientes = () => {
@@ -42,6 +43,24 @@ const Clientes = () => {
   };
 
   const save = () => {
+    if (
+      !util.allFields(cliente, [
+        'email',
+        'nome',
+        'telefone',
+        'dataNascimento',
+        'sexo',
+      ])
+    ) {
+      // DISPARAR O ALERTA
+      Notification.error({
+        placement: 'topStart',
+        title: 'Calma lá!',
+        description: 'Antes de prosseguir, preencha todos os campos!',
+      });
+      return false;
+    }
+
     dispatch(addCliente());
   };
 

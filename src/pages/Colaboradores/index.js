@@ -1,5 +1,6 @@
 import 'rsuite/dist/styles/rsuite-default.css';
 import moment from 'moment';
+import util from '../../util';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +14,15 @@ import {
   resetColaborador,
 } from '../../store/modules/colaborador/actions';
 
-import { Button, Drawer, Modal, Icon, TagPicker, Tag } from 'rsuite';
+import {
+  Button,
+  Drawer,
+  Modal,
+  Icon,
+  TagPicker,
+  Tag,
+  Notification,
+} from 'rsuite';
 import Table from '../../components/Table';
 
 const Colaborador = () => {
@@ -43,6 +52,25 @@ const Colaborador = () => {
   };
 
   const save = () => {
+    if (
+      !util.allFields(colaborador, [
+        'email',
+        'nome',
+        'telefone',
+        'dataNascimento',
+        'sexo',
+        'vinculo',
+        'especialidades',
+      ])
+    ) {
+      // DISPARAR O ALERTA
+      Notification.error({
+        placement: 'topStart',
+        title: 'Calma lá!',
+        description: 'Antes de prosseguir, preencha todos os campos!',
+      });
+      return false;
+    }
     dispatch(addColaborador());
   };
 
