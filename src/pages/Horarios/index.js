@@ -149,6 +149,16 @@ const Horario = () => {
     dispatch(removeHorario());
   };
 
+  const onHorarioClick = (horario) => {
+    dispatch(
+      updateHorario({
+        horario,
+        behavior: 'update',
+      })
+    );
+    setComponents('drawer', true);
+  };
+
   return (
     <div className="col p-5 overflow-auto h-100">
       <Drawer
@@ -318,17 +328,8 @@ const Horario = () => {
               localize.format(date, 'dddd', culture),
           }}
           onSelectEvent={(e) => {
-            dispatch(
-              updateHorario({
-                behavior: 'update',
-              })
-            );
-            dispatch(
-              updateHorario({
-                horario: e.resource,
-              })
-            );
-            setComponent('drawer', true);
+              const { horario } = e.resource;
+              onHorarioClick(horario);
           }}
           onSelectSlot={(slotInfo) => {
             const { start, end } = slotInfo;

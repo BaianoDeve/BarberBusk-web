@@ -60,7 +60,6 @@ const Colaborador = () => {
         'dataNascimento',
         'sexo',
         'vinculo',
-        'especialidades',
       ])
     ) {
       // DISPARAR O ALERTA
