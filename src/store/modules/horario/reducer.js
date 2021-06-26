@@ -20,7 +20,7 @@ const INITIAL_STATE = {
     dias: [],
     inicio: '',
     fim: '',
-    especialides: [],
+    especialidades: [],
     colaboradores: [],
   },
 };
