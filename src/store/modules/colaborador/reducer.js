@@ -21,7 +21,7 @@ const INITIAL_STATE = {
     dataNascimento: '',
     sexo: 'M',
     vinculo: 'A',
-    especialides: [],
+    especialidades: [],
   },
 };
 
