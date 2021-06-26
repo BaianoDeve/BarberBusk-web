@@ -156,7 +156,7 @@ const Horario = () => {
         behavior: 'update',
       })
     );
-    setComponents('drawer', true);
+    setComponent('drawer', true);
   };
 
   return (
